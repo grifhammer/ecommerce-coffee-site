@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	if (!user )
+		a(href='/login' class='btn btn-primary') Login
+		br
+		a(href='/register' class="btn btn-default") Register
+	if (user)
+		p Congrats! Thanks for returning #{user.username}
+		a(href='/logout')

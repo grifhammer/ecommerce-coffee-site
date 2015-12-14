@@ -37,6 +37,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+//Passport Configuration
+var Account = require('./models/account');
+
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 mongoose.connect('mongodb://localhost:27017/coffee')
 
 
