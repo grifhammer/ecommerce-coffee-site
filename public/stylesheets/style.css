@@ -1,4 +1,50 @@
-/* line 1, ../../compass/sass/views/_home.scss */
+/* line 4, ../../compass/sass/views/_home.scss */
 * {
+  color: black;
+}
+
+/* line 9, ../../compass/sass/views/_home.scss */
+#header-wrap {
+  width: 85%;
+  margin: auto;
+}
+/* line 12, ../../compass/sass/views/_home.scss */
+#header-wrap .login-wrapper {
+  float: right;
+}
+
+/* line 18, ../../compass/sass/views/_home.scss */
+.navbar, .navbar.active {
+  width: 85%;
+  margin: auto;
+  text-align: center;
+}
+
+/* line 24, ../../compass/sass/views/_home.scss */
+.navbar.active {
   color: white;
+}
+
+/* line 30, ../../compass/sass/views/_home.scss */
+.hero {
+  width: 100%;
+  height: 485px;
+  color: white;
+  background-image: url("../images/CupInBeans.jpg");
+  background-position: left center;
+}
+/* line 36, ../../compass/sass/views/_home.scss */
+.hero .hero-text {
+  color: white;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+/* line 43, ../../compass/sass/views/_home.scss */
+#main-text {
+  border: 2px solid brown;
+  border-radius: 10px;
+  width: 60%;
+  margin: 60px auto 0px;
+  padding: 20px;
 }

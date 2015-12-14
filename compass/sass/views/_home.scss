@@ -1,3 +1,49 @@
+@import 'variables/colors';
+
+
 *{
+    color: black;
+    // background-color: 
+}
+
+#header-wrap{
+    width: 85%;
+    margin: auto;
+    .login-wrapper{
+        float: right;
+    }
+}
+
+
+.navbar{
+    width: 85%;
+    margin: auto;
+    text-align: center;
+}
+
+.navbar.active{
+    @extend .navbar;
     color: white;
+}
+
+
+.hero{
+    width: 100%;
+    height: 485px;
+    color: white;
+    background-image: url('../images/CupInBeans.jpg');
+    background-position: left center;
+    .hero-text{
+        color: white;
+        margin-left: 10%;
+        margin-top: 10%;
+    }
+}
+
+#main-text{
+    border: 2px solid brown;
+    border-radius: 10px;
+    width: 60%;
+    margin: 60px auto 0px;
+    padding: 20px;
 }
