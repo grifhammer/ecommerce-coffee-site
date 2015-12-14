@@ -48,3 +48,19 @@
   margin: 60px auto 0px;
   padding: 20px;
 }
+
+/* line 51, ../../compass/sass/views/_home.scss */
+#first-step {
+  background-image: url("../images/CoffeeBags.jpg");
+  background-position: left center;
+}
+
+/* line 61, ../../compass/sass/views/_home.scss */
+#third-step {
+  background-image: url("../images/cupSteam.jpg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: right center;
+  color: white;
+  height: 375px;
+}
