@@ -10,7 +10,7 @@ block content
 		if (user)
 			div.login-wrapper
 				p Congrats! Thanks for returning #{user.username}
-				a(href='/logout')
+				a.btn.btn-warning(href='/logout') Logout!
 	ul.navbar.nav-pills.nav-justified
 		li.active(role='presentation')
 			a(href='#') 1. Welcome
