@@ -6,6 +6,16 @@ html
 		|<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		#header-wrap
+			img(src="images/dc_roasters_105x65_lt.png")
+			if (!user)
+				.login-wrapper
+					a.btn.btn-primary(href='/login') Login
+					a.btn.btn-default(href='/register') Register
+			if (user)
+				.login-wrapper
+					p Congrats! Thanks for returning #{user.username}
+					a.btn.btn-warning(href='/logout') Logout!
 		block content
 	footer
 		#footer-wrap

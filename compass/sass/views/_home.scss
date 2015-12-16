@@ -11,6 +11,9 @@ body{
     .error{
         color: $red;
     }
+    .container{
+        padding-top: 90px;
+    }
     #header-wrap{
         width: 100%;
         padding: 0 7.5% 20px;
@@ -35,7 +38,6 @@ body{
     #nav-wrap{
         background-color: $brown_dk;
         border-bottom: 2px $brown_lt solid;
-        padding: 90px 0px 3px;
         overflow: hidden;
         .signup-progress{
             margin: 5px 30px;
