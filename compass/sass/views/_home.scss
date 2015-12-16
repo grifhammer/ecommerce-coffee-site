@@ -2,67 +2,275 @@
 
 
 *{
-    color: black;
+    font-family: 'Roboto', sans-serif;
     // background-color: 
 }
 
-#header-wrap{
-    width: 85%;
-    margin: auto;
-    .login-wrapper{
-        float: right;
+body{
+    background-color: darken($cream, 10%);
+    .error{
+        color: $red;
     }
-}
+    #header-wrap{
+        width: 100%;
+        padding: 0 7.5% 20px;
+        margin: 0;
+        background: $brown_dk; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient($brown_dk, lighten($brown_dk, 10%)); /* Safari 5.1 to 6.0 */
+        background: -o-linear-gradient($brown_dk, lighten($brown_dk, 10%)); /* For Opera 11.6 to 12.0 */
+        background: -moz-linear-gradient($brown_dk, lighten($brown_dk, 10%)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient($brown_dk,lighten($brown_dk, 10%)); /* Standard syntax */
+        border-bottom: 2px $brown_lt solid;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        .login-wrapper{
+            p{
+                color: white;
+            }
+            float: right;
+        }
+    }
+    #nav-wrap{
+        background-color: $brown_dk;
+        border-bottom: 2px $brown_lt solid;
+        padding: 90px 0px 3px;
+        overflow: hidden;
+        .signup-progress{
+            margin: 5px 30px;
+            padding: 0;
+            overflow: hidden;
+            background: lighten($brown_dk, 5%);
+            border-radius: 10px;
+            li{
+                float: left;
+                width: 25%;
+                padding: 5px;
+                a{
+                    color: lighten($brown_dk, 20%);
+                    font-weight: 700;
+                    background: image-url('menu-steps.png') no-repeat;
+                    background-size: 35px, auto;
+                    height: 30px;
+                    padding: 5px 0 0 40px;
+                    display: block;
+                    overflow: hidden;
+
+                }
+                &.active{
+                    a{
+                        color: $white;
+                        background-image: image-url('menu-steps-active.png');
+                    }
+                }
+                .welcome { background-position: 0 0; }
+                .options { background-position: 0 -30px; }
+                .delivery { background-position: 0 -60px; }
+                .payment { background-position: 0 -90px; }
+            }
+            
+        }
+    }
 
 
-.navbar{
-    width: 85%;
-    margin: auto;
-    text-align: center;
-}
 
-.navbar.active{
-    @extend .navbar;
-    color: white;
-}
-
-
-.hero{
-    width: 100%;
-    height: 485px;
-    color: white;
-    background-image: url('../images/CupInBeans.jpg');
-    background-position: left center;
-    .hero-text{
+    .hero{
+        width: 100%;
+        height: 485px;
         color: white;
-        margin-left: 10%;
-        margin-top: 10%;
+        background-image: url('../images/CupInBeans.jpg');
+        background-position: left center;
+        border-bottom: 2px solid darken($cream, 20%);
+        .hero-text{
+            color: white;
+            width: 40%;
+            margin-left: 10%;
+            margin-top: 8%;
+            text-shadow: 3px 3px 10px rgba($black, 0.7);
+            h1{
+                font-size: 70px;
+            }
+            p{
+                font-size: 40px;
+            }
+        }
     }
-}
 
-#main-text{
-    border: 2px solid brown;
-    border-radius: 10px;
-    width: 60%;
-    margin: 60px auto 0px;
-    padding: 20px;
-}
+    #main-text{
+        border: 2px solid darken($cream, 25%);
+        background-color: ($cream);
+        border-radius: 10px;
+        width: 60%;
+        margin: 60px auto 0px;
+        padding: 25px;
+        h2{
+            font-size: 40px;
+        }
+        p{
+            font-size: 20px;
+        }
 
-#first-step{
-    background-image: url('../images/CoffeeBags.jpg');
-    background-position: left center;
-}
+    }
+    .how-label{
+        text-align: center;
+        font-size: 40px;
+    }
+    .text-wrap{
+        width: 40%;
+        position: relative;
+        top: 30%;
+        &.left{
+            left: 11%;
+        }
+        &.right{
+            right: 11%;
+        }
+        h3{
+            font-weight: bold;
+            font-size: 65px;
+            padding-bottom: 33px;
+            margin: 0;
+        }
+        p{
+            font-size: 20px;
+            padding-top: 7px;
+            padding-left: 80px;
+        }
+    }
+    #first-step{
+        position: relative;
+        background-image: url('../images/CoffeeBags.jpg');
+        background-repeat: repeat-y;
+        background-position: left bottom;
+        height: 500px;
+        color: white;
 
-#second-step{
+    }
 
-}
+    #second-step{
+        position: relative;
+        background-image: url('../images/canvas.jpg');
+        color: $brown_dk;
+        padding: 90px 60px 60px;
+        overflow: hidden;
+        #postcard{
+            border: 15px solid $white;
+            box-shadow: 3px 3px 10px rgba($black, 0.7);
+            margin-left: 10%;
+            @include rotate(-5deg);
+            float: left;
+            img{
+                border: 2px solid $brown_lt;
+                display: block;
+                max-width: 100%;
+            }
+        }
+        .text-wrap{
+            float: right;
+            position: relative;
+            top: 30%;
+            right: 11%;
+        }
+
+    }
 
 
-#third-step{
-    background-image: url('../images/cupSteam.jpg');
-    background-color: black;
-    background-repeat: no-repeat;
-    background-position: right center;
-    color: white;
-    height: 375px;
+    #third-step{
+        position: relative;
+        background-image: url('../images/cupSteam.jpg');
+        background-color: black;
+        background-repeat: no-repeat;
+        background-position: right center;
+        color: white;
+        height: 400px;
+    }
+    .register-wrap{
+        text-align: center;
+        padding: 50px;
+        a{
+            button.btn.btn-success{
+                background-color: $green_lt;
+                border: 1px solid $green_dk;
+                padding: 20px 70px;
+                font-size: 30px;
+                &:hover{
+                    background-color: $green_dk;
+                }
+            }
+        }
+    }
+    #footer-wrap{
+        background-color: $brown_dk;
+        padding: 50px 0px;
+        text-align: center;
+        margin: auto;
+        color: lighten($brown_dk, 20%);
+        .links{
+            overflow: hidden;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 15px;
+            width: 225px;
+            margin: auto;
+            .link{
+                color: white;
+                float: left;
+                width: 33%;
+            }
+
+        }
+        .top-wrap{
+            margin: auto;
+            border-bottom: 2px solid lighten($brown_dk, 20%);
+            width: 50%;
+            padding-bottom: 60px;
+            img{
+                width: 250px;
+            }
+            .links{
+                text-align: left;
+                padding-top: 30px;
+                font-size: 16px;
+            }
+        }
+        a{
+            color: white;
+        }
+        .trademarks{
+            margin: auto;
+            width: 100%;
+            .text-wrap{
+                margin: auto;
+                text-align: center;
+                padding-top: 55px;
+                .copyright{
+                    color: $white;
+                }
+                .links{
+                    border: none;
+                    width: 125px;
+                    padding-bottom: 35px;
+                    .link{
+                        width: 50%;
+                    }
+                }
+            }
+            .commons-license{
+                .title{
+
+                }
+                .contributors{
+                    margin: auto;
+                    overflow: hidden;
+                    width: 30%;
+                    .contributor{
+                        float: left;
+                        width: 25%;
+                        list-style: none;
+                    }
+                }
+            }
+        }
+    }
 }
