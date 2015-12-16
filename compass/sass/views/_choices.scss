@@ -1,0 +1,40 @@
+#choices{
+    &.container{
+        padding-top: 0;
+    }
+    #plan-wrapper{
+        margin-top: 60px;
+        text-align: center;
+
+        #choices-header{
+            margin: 0 0 0px;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+        #choices-subheader{
+            margin: 0;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+        .choices-image{
+            img{
+                max-width: 100%;
+            }
+        }
+        .choice-block{
+            border: 2px solid darken($cream, 30%);
+            border-radius: 5px;
+            margin: 30px auto;
+            padding: 30px;
+            .choices-text{
+                text-align: left;
+            }
+        }
+        #submit-btn-wrap{
+            text-align: left;
+            margin-bottom: 70px;
+        }
+    }
+}
+

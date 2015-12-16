@@ -318,3 +318,46 @@ body #footer-wrap .trademarks .commons-license .contributors .contributor {
   width: 25%;
   list-style: none;
 }
+
+/* line 2, ../../compass/sass/views/_choices.scss */
+#choices.container {
+  padding-top: 0;
+}
+/* line 5, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper {
+  margin-top: 60px;
+  text-align: center;
+}
+/* line 9, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper #choices-header {
+  margin: 0 0 0px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+/* line 14, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper #choices-subheader {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+/* line 21, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper .choices-image img {
+  max-width: 100%;
+}
+/* line 25, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper .choice-block {
+  border: 2px solid #ada48d;
+  border-radius: 5px;
+  margin: 30px auto;
+  padding: 30px;
+}
+/* line 30, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper .choice-block .choices-text {
+  text-align: left;
+}
+/* line 34, ../../compass/sass/views/_choices.scss */
+#choices #plan-wrapper #submit-btn-wrap {
+  text-align: left;
+  margin-bottom: 70px;
+}

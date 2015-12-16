@@ -6,7 +6,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
     console.log(req.session.username)
-  res.render('index', { user: req.session.username });
+    res.render('index', { user: req.session.username });
 });
 
 router.get('/register', function (req, res, next){
@@ -21,7 +21,7 @@ router.post('/register', function(req, res) {
 
         passport.authenticate('local')(req, res, function () {
             req.session.username = req.body.username;
-            res.redirect('/');
+            res.render('choices');
         });
     });
 });
@@ -63,10 +63,23 @@ router.post('/login', function (req, res, next){
     })(req, res, next);
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
     req.logout();
     req.session.destroy();
     res.redirect('/');
+});
+
+
+router.get('/choices', function (req, res, next){
+    //CHeck to see if user is logged in
+    if(!req.session.username){
+        res.redirect('/login');
+    }
+    else{
+        //Check to see if they have preferences already
+
+        res.render('choices');
+    }
 });
 
 module.exports = router;
