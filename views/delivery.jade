@@ -1,0 +1,87 @@
+extends layout
+
+block content
+    #nav-wrap
+            .container
+                ul.signup-progress
+                    li
+                        a(href='/').welcome 1. Welcome
+                    li
+                        a(href='/choices').options 2. Options
+                    li.active
+                        a(href='/delivery').delivery 3. Delivery
+                    li
+                        a(href='/payment').payment 4. Payment
+    #delivery.container
+        #delivery-wrapper
+            h1#delivery-header Please Enter your shipping info
+            h3#delivery-subheader We treat your coffee like gold. Like black gold (not Texas tea). It will be shipped safely and is guaranteed.
+            form(name='address-form', action='/delivery', method='post')
+                #input-wrap
+                    h2 Address
+                    label(for="fullNameInput") Full Name
+                    input.form-control(name="fullName", type='text', placeholder='Full Name')
+                    label(for='addressInput') Address Line 1
+                    input.form-control(name="addressLine1", type='text', placeholder='Address Line 1')
+                    label(for='addressInput1') Address Line 2
+                    input.form-control(name="addressLine2", type='text', placeholder='Address Line 2')
+                    label(for='cityInput') City
+                    input.form-control(name="city", type='text', placeholder='City')
+                    label(for='stateInput') State / Province / Region
+                    select.form-control(name="state", type='text', placeholder='Address Line 2')
+                        option(value='AL') Alabama
+                        option(value='AK') Alaska
+                        option(value='AZ') Arizona
+                        option(value='AR') Arkansas
+                        option(value='CA') California
+                        option(value='CO') Colorado
+                        option(value='CT') Connecticut
+                        option(value='DE') Delaware
+                        option(value='FL') Florida
+                        option(value='GA') Georgia
+                        option(value='HI') Hawaii
+                        option(value='ID') Idaho
+                        option(value='IL') Illinois
+                        option(value='IN') Indiana
+                        option(value='IA') Iowa
+                        option(value='KS') Kansas
+                        option(value='KY') Kentucky
+                        option(value='LA') Louisiana
+                        option(value='ME') Maine
+                        option(value='MD') Maryland
+                        option(value='MA') Michigan
+                        option(value='MN') Minnesota
+                        option(value='MS') Mississippi
+                        option(value='MO') Missouri
+                        option(value='MT') Montana
+                        option(value='NE') Nebraska
+                        option(value='NV') Nevada
+                        option(value='NH') New Hampshire
+                        option(value='NJ') New Jersey
+                        option(value='NM') New Mexico
+                        option(value='NY') New York
+                        option(value='NC') North Carolina
+                        option(value='ND') North Dakota
+                        option(value='OH') Ohio
+                        option(value='OK') Oklahoma
+                        option(value='OR') Oregon
+                        option(value='PA') Pennsylvania
+                        option(value='RI') Rhode Island
+                        option(value='SC') South Carolina
+                        option(value='SD') South Dakota
+                        option(value='TN') Tennessee
+                        option(value='TX') Texas
+                        option(value='UT') Utah
+                        option(value='VT') Vermont
+                        option(value='VA') Virginia
+                        option(value='WA') Washington
+                        option(value='WV') West Virginia
+                        option(value='WI') Wisconsin
+                        option(value='WY') Wyoming
+                        option(value='DC') District of Columbia
+                    label(for='zipCodeInput') Zip Code
+                    input.form-control.short(name="zipCode", type='number', placeholder='Zip Code')
+                    label(for='deliveryDate') Date of next delivery (this will be your first delivery if you are just signing up)
+                    input.form-control.short(name="deliveryDate", type='number')
+                #submit-btn-wrap
+                    input.submit-btn.btn.btn-primary.btn-lg(type='submit', name='submit')
