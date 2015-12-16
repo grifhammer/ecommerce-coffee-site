@@ -115,17 +115,77 @@ router.post('/choices', function (req, res, next){
                 res.send('There was an error saving your preferences. Please re-enter your order details. ERROR: '+err)
 
             }else{
-                account.save();
-                console.log("I saved some shit")
-                console.log(account);
+                account.save;
             }
         });
-        res.redirect('/');
+        res.redirect('/delivery');
     }
 });
 
 router.get('/delivery', function (req, res, next){
-    res.render('delivery', {username: req.session.username});
+    if(!req.session.username){
+        res.redirect('/login');
+    }else{
+        Account.findOne({username: req.session.username},
+            function (err, doc){
+                var currAddr1 = doc.addressLine1 ? doc.addressLine1 : ''
+                var currAddr2 = doc.addressLine2 ? doc.addressLine2 : ''
+                var currFullName = doc.fullName ? doc.fullName : ''
+                var currCity = doc.city ? doc.city : ''
+                var currState = doc.state ? doc.state : ''
+                var currZipCode = doc.zipCode ? doc.zipCode : ''
+                var currDeliveryDate = doc.deliveryDate ? doc.deliveryDate : ''
+                res.render('delivery', {user: req.session.username,
+                                        fullName: currFullName,
+                                        addressLine1: currAddr1,
+                                        addressLine2: currAddr2,
+                                        city: currCity,
+                                        state: currState,
+                                        zipCode: currZipCode,
+                                        deliveryDate: currDeliveryDate
+                                        });
+            });
+        
+
+    }
 });
+
+router.post('/delivery', function (req, res, next){
+    if(!req.session.username){
+        res.redirect('/login');
+    }
+    else{
+        var newFullName = req.body.fullName
+        var newAddressLine1 = req.body.addressLine1
+        var newAddressLine2 = req.body.addressLine2
+        var newCity = req.body.city
+        var newState = req.body.state
+        var newZipCode = req.body.zipCode
+        var newDeliveryDate = req.body.deliveryDate
+
+        var update = {  
+                        fullName: newFullName,
+                        addressLine1: newAddressLine1,
+                        addressLine2: newAddressLine2,
+                        city: newCity,
+                        state: newState,
+                        zipCode: newZipCode,
+                        deliveryDate: newDeliveryDate
+                     }
+
+        Account.findOneAndUpdate({username: req.session.username},
+            update,
+            {upsert: true},
+            function (err, account){
+                if (err){
+                    res.send('There was an error saving your preferences. Please re-enter your order details. ERROR: '+err)
+                }else{
+                    account.save;
+                }
+        });
+        res.redirect('/')
+
+    }
+})
 
 module.exports = router;

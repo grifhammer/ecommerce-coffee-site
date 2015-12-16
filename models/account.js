@@ -7,7 +7,14 @@ var Account = new Schema ({
     password: String,
     pounds: Number,
     frequency: String,
-    grind: String
+    grind: String,
+    fullName: String,
+    addressLine1: String,
+    addressLine2: String,
+    city: String,
+    state: String,
+    zipCode: Number,
+    deliveryDate: String
 
 });
 
