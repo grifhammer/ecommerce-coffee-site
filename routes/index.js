@@ -5,7 +5,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.session.username)
     res.render('index', { user: req.session.username });
 });
 
@@ -71,15 +70,62 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/choices', function (req, res, next){
-    //CHeck to see if user is logged in
+    //Check to see if user is logged in
     if(!req.session.username){
         res.redirect('/login');
     }
     else{
         //Check to see if they have preferences already
+        Account.findOne({username: req.session.username},
+            function (err, doc){
+                var currGrind = doc.grind ? doc.grind : undefined
+                var currPounds = doc.pounds ? doc.pounds : undefined
+                var currFrequency = doc.frequency ? doc.frequency : undefined
+                console.log(currGrind)
+                console.log(currFrequency)
 
-        res.render('choices');
+                res.render('choices', { user: req.session.username,
+                                        grind: currGrind,
+                                        pounds: currPounds,
+                                        frequency: currFrequency
+                                      });
+
+            });
     }
+});
+
+router.post('/choices', function (req, res, next){
+    //Are they logged in
+    if(!req.session.username){
+        res.redirect('/login');
+    }
+    else{
+        var newGrind = req.body.grind;
+        var newFrequency = req.body.frequency;
+        var newPounds = req.body.pounds;
+
+        var update = {grind: newGrind, frequency: newFrequency, pounds: newPounds};
+
+        Account.findOneAndUpdate(
+        {username: req.session.username},
+        update, 
+        {upsert: true},
+        function (err, account){
+            if (err){
+                res.send('There was an error saving your preferences. Please re-enter your order details. ERROR: '+err)
+
+            }else{
+                account.save();
+                console.log("I saved some shit")
+                console.log(account);
+            }
+        });
+        res.redirect('/');
+    }
+});
+
+router.get('/delivery', function (req, res, next){
+    res.render('delivery', {username: req.session.username});
 });
 
 module.exports = router;

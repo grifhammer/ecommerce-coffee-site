@@ -16,22 +16,22 @@ block content
             #plan-wrapper
                 h1#choices-header Tell us what you want!
                 h2#choices-subheader Shipping is free and you can skip any week
-                form(name="choices-form", action="/delivery", method="post")
+                form(name="choices-form", action="/choices", method="post")
                     #choices-frequency.choice-block
                         .row
                             .choices-image.col-sm-6
                                 image(src="../images/calendar.png")
                             .choices-text.col-sm-6
-                                h2.choices-label 1.Frequency
+                                h2.choices-label 1. Frequency
                                 .choices-lower-text-wrapper
                                     .choices-lower-text How often would you like us to send you your coffee
                                     select#frequency.form-control(name="frequency")
-                                        option(value="weekly") Weekly
-                                        option(value="biweekly") Every Two Weeks
-                                        option(value="monthly") Montly
-                                        option(value="quarterly") Quarterly
-                                        option(value="semianually") Semi-Anually
-                                        option(value="anually") Annually
+                                        option(value="weekly", selected=(frequency == 'weekly')? true: false) Weekly
+                                        option(value="biweekly", selected=(frequency == 'biweekly')? true: false) Every Two Weeks
+                                        option(value="monthly", selected=(frequency == 'monthly')? true: false) Monthly
+                                        option(value="quarterly", selected=(frequency == 'quarterly')? true: false) Quarterly
+                                        option(value="semianually", selected=(frequency == 'semianually')? true: false) Semi-Anually
+                                        option(value="anually", selected=(frequency == 'anually')? true: false) Annually
                                     .choices-help-text You can cancel anytime. You can skip anytime.
                     #choices-quantity.choice-block
                         .row
@@ -41,7 +41,7 @@ block content
                                 h2.choices-label 2. Quantity
                                 .choices-lower-text-wrapper
                                     .choices-lower-text How many pounds (in increments of .25 lb) would you like each delivery?
-                                    input.form-control(type="number", name="quarterPounds", min="0",step="0.25", placeholder="20")
+                                    input.form-control(type="number", name="pounds", min="0",step="0.25", placeholder="20", value=(pounds ? pounds : ''))
                                     .choices-help-text You can cancel anytime. You can skip anytime.
                     #choices-grind.choice-block
                         .row
@@ -52,11 +52,11 @@ block content
                                 .choices-lower-text-wrapper
                                     .choices-lower-text How do you like your grinds?
                                     select#grind.form-control(name="grind")
-                                        option(value="extraCourse") Extra Course
-                                        option(value="course") Course
-                                        option(value="medCourse") Medium Course
-                                        option(value="fine") Fine
-                                        option(value="veryFine") Very Fine
+                                        option(value="extraCourse", selected=(grind == 'extraCourse')? true: false) Extra Course
+                                        option(value="course", selected=(grind == 'course')? true: false) Course
+                                        option(value="medCourse", selected=(grind == 'medCourse')? true: false) Medium Course
+                                        option(value="fine", selected=(grind == 'fine')? true: false) Fine
+                                        option(value="veryFine", selected=(grind == 'veryFine')? true: false) Very Fine
                                     .choices-help-text You can cancel anytime. You can skip anytime.
                     #submit-btn-wrap
-                        input#submit-btn.btn.btn-primary.btn-lg(type="submit", name="submit")
+                        input.submit-btn.btn.btn-primary.btn-lg(type="submit", name="submit")

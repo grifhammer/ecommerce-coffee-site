@@ -357,7 +357,26 @@ body #footer-wrap .trademarks .commons-license .contributors .contributor {
   text-align: left;
 }
 /* line 34, ../../compass/sass/views/_choices.scss */
-#choices #plan-wrapper #submit-btn-wrap {
-  text-align: left;
+#choices #plan-wrapper .submit-btn-wrap {
+  margin-bottom: 70px;
+}
+
+/* line 9, ../../compass/sass/views/_delivery.scss */
+#delivery #delivery-wrapper #input-wrap {
+  border: 2px solid #ada48d;
+  border-radius: 5px;
+  padding: 35px 30px 40px;
+}
+/* line 13, ../../compass/sass/views/_delivery.scss */
+#delivery #delivery-wrapper #input-wrap .form-control {
+  width: 50%;
+}
+/* line 15, ../../compass/sass/views/_delivery.scss */
+#delivery #delivery-wrapper #input-wrap .form-control.short {
+  width: 10%;
+}
+/* line 20, ../../compass/sass/views/_delivery.scss */
+#delivery #delivery-wrapper #submit-btn-wrap {
+  margin-top: 25px;
   margin-bottom: 70px;
 }
