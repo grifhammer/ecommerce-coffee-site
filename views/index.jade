@@ -1,16 +1,6 @@
 extends layout
 
 block content
-	#header-wrap
-		img(src="images/dc_roasters_105x65_lt.png")
-		if (!user)
-			.login-wrapper
-				a.btn.btn-primary(href='/login') Login
-				a.btn.btn-default(href='/register') Register
-		if (user)
-			.login-wrapper
-				p Congrats! Thanks for returning #{user.username}
-				a.btn.btn-warning(href='/logout') Logout!	
 	#nav-wrap
 		.container
 			ul.signup-progress
@@ -22,7 +12,7 @@ block content
 					a(href='/delivery').delivery 3. Delivery
 				li
 					a(href='/payment').payment 4. Payment
-	div.hero.container
+	div.hero
 		div.hero-text
 			h1 A better way to grind
 			p Freshly Roasted coffee beans delivered weekly to your door.

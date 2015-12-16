@@ -3,7 +3,10 @@ extends layout
 block content
 	.container
 		h1 Login Page
-		p.lead Please enter your username and password below.
+		if (failed)
+			p.lead= failed
+		if (!failed)
+			p.lead Please enter your username and password below.
 		br
 		form#login-form(role="form", action='/login', method='post', style='max-width: 300px;')
 			.form-group

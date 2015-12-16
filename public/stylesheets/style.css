@@ -108,9 +108,9 @@ body .hero {
 /* line 87, ../../compass/sass/views/_home.scss */
 body .hero .hero-text {
   color: white;
-  width: 40%;
-  margin-left: 10%;
-  margin-top: 8%;
+  width: 48%;
+  padding-left: 11%;
+  padding-top: 7%;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
 }
 /* line 93, ../../compass/sass/views/_home.scss */

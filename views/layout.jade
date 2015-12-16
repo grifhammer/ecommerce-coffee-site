@@ -14,7 +14,7 @@ html
 					a.btn.btn-default(href='/register') Register
 			if (user)
 				.login-wrapper
-					p Congrats! Thanks for returning #{user.username}
+					p Congrats! Thanks for returning #{user}
 					a.btn.btn-warning(href='/logout') Logout!
 		block content
 	footer

@@ -5,19 +5,17 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.user)
-  res.render('index', { user: req.user });
+    console.log(req.session.username)
+  res.render('index', { user: req.session.username });
 });
 
 router.get('/register', function (req, res, next){
-    res.render('register');
+    res.render('register', { });
 });
 
 router.post('/register', function(req, res) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
-            console.log(err);
-            console.log(account);
             return res.render('register', { account : account, err: err });
         }
 
@@ -29,16 +27,45 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function (req, res, next){
-    res.render('login');
+    if(req.session.username){
+        res.redirect('/');
+    }
+    if(req.query.failedlogin){
+        res.render('login', {failed: "Your username or password is incorrect"});
+    }
+
+    //user hasnt logged in and hasnt failed any logins
+    res.render('login', {});
 });
 
-router.post('/login', passport.authenticate('local'), function (req, res){
-    req.session,username = req.body.username;
-    res.redirect('/')
+router.post('/login', function (req, res, next){
+    passport.authenticate('local', function (err, user, info){
+        if(err){
+            return next(err);
+        }
+
+        if(!user){
+            return res.redirect('login?failedlogin=1');
+        }
+        if(user){
+            console.log(user);
+            passport.serializeUser(function (user, done){
+                done(null, user);
+            });
+            passport.deserializeUser(function (obj, done){
+                done(null, obj);
+            });
+            req.session.username = user.username;
+            console.log(req.session.username);
+        }
+        return res.redirect('/')
+
+    })(req, res, next);
 });
 
 router.get('/logout', function(req, res) {
     req.logout();
+    req.session.destroy();
     res.redirect('/');
 });
 
