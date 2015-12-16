@@ -18,10 +18,11 @@ router.post('/register', function(req, res) {
         if (err) {
             console.log(err);
             console.log(account);
-            return res.render('register', { account : account });
+            return res.render('register', { account : account, err: err });
         }
 
         passport.authenticate('local')(req, res, function () {
+            req.session.username = req.body.username;
             res.redirect('/');
         });
     });
@@ -32,6 +33,7 @@ router.get('/login', function (req, res, next){
 });
 
 router.post('/login', passport.authenticate('local'), function (req, res){
+    req.session,username = req.body.username;
     res.redirect('/')
 });
 
