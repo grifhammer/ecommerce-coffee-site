@@ -6,9 +6,13 @@ var vars = require('../config/vars.json');
 var router = express.Router();
 var stripe = require("stripe")(vars.stripeKey);
 
-function formatDate(value)
+function formatDateShort(value)
 {
    return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getFullYear();
+}
+function formatDateLong(value)
+{
+   return value.toDateString();
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -63,7 +67,7 @@ router.post('/login', function (req, res, next){
             });
             req.session.username = user.username;
         }
-        return res.redirect('/')
+        return res.redirect(req.session.route ? req.session.route : '/')
 
     })(req, res, next);
 });
@@ -78,6 +82,8 @@ router.get('/logout', function (req, res) {
 router.get('/choices', function (req, res, next){
     //Check to see if user is logged in
     if(!req.session.username){
+        console.log(req.url);
+        req.session.route = req.url
         res.redirect('/login');
     }
     else{
@@ -102,6 +108,7 @@ router.get('/choices', function (req, res, next){
 router.post('/choices', function (req, res, next){
     //Are they logged in
     if(!req.session.username){
+        req.session.route = req.url
         res.redirect('/login');
     }
     else{
@@ -129,6 +136,7 @@ router.post('/choices', function (req, res, next){
 
 router.get('/delivery', function (req, res, next){
     if(!req.session.username){
+        req.session.route = req.url
         res.redirect('/login');
     }else{
         Account.findOne({username: req.session.username},
@@ -139,7 +147,7 @@ router.get('/delivery', function (req, res, next){
                 var currCity = doc.city ? doc.city : ''
                 var currState = doc.state ? doc.state : ''
                 var currZipCode = doc.zipCode ? doc.zipCode : ''
-                var currDeliveryDate = doc.deliveryDate ? formatDate(doc.deliveryDate) : ''
+                var currDeliveryDate = doc.deliveryDate ? formatDateShort(doc.deliveryDate) : ''
                 console.log(currAddr2)
                 res.render('delivery', {user: req.session.username,
                                         active: 'delivery',
@@ -159,6 +167,7 @@ router.get('/delivery', function (req, res, next){
 
 router.post('/delivery', function (req, res, next){
     if(!req.session.username){
+        req.session.route = req.url
         res.redirect('/login');
     }
     else{
@@ -197,6 +206,7 @@ router.post('/delivery', function (req, res, next){
 
 router.get('/account', function (req, res, next){
     if(!req.session.username){
+        req.session.route = req.url
         res.redirect('/login');
     }else{
         var currUser = req.session.username;
@@ -211,7 +221,7 @@ router.get('/account', function (req, res, next){
                 var currGrind = doc.grind
                 var currFrequency = doc.frequency
                 var currPounds = doc.pounds
-                var currDeliveryDate = doc.deliveryDate
+                var currDeliveryDate = formatDateLong(doc.deliveryDate)
                 res.render('account', {user: req.session.username,
                                         fullName: currFullName,
                                         addressLine1: currAddr1,
@@ -228,36 +238,9 @@ router.get('/account', function (req, res, next){
     }
 });
 
-// router.get('/email', function (req, res, next){
-//     var transporter = nodemailer.createTransport({
-//         service: "Gmail",
-//         auth: {
-//             user: vars.email,
-//             pass: vars.password
-//         }
-
-//     });
-//     var text = "this is a test email from my node server";
-//     var mailOptions = {
-//         from: 'Griffin Hammer <grifhammer@gmail.com>',
-//         to: 'Griffin Hammer <grifhammer@gmail.com>',
-//         subject: 'This is a test',
-//         text: text
-//     };
-
-//     transporter.sendMail(mailOptions, function (error, info){
-//         if(error){
-//             console.log(error);
-//             res.json({response: error});
-//         }else{
-//             console.log("WE DID IT! Response: " + info.response);
-//             res.json({response: "success"});
-//         }
-//     })
-// });
-
 router.get('/payment', function (req, res, next){
     if(!req.session.username){
+        req.session.route = req.url
         res.redirect('/login');
     }else{
         var currUser = req.session.username;
@@ -272,7 +255,7 @@ router.get('/payment', function (req, res, next){
                 var currGrind = doc.grind
                 var currFrequency = doc.frequency
                 var currPounds = doc.pounds
-                var currDeliveryDate = doc.deliveryDate
+                var currDeliveryDate = formatDateLong(doc.deliveryDate)
                 console.log(currAddr2)
                 res.render('payment', { user: req.session.username,
                                         active: "payment",
@@ -293,7 +276,8 @@ router.get('/payment', function (req, res, next){
 
 router.post('/payment', function (req, res, next){
     if(!req.session.username){
-        res.redirect('/login')
+        req.session.route = req.url
+        res.redirect('/login');
     }else{
 
         stripe.charges.create({
