@@ -189,6 +189,20 @@ router.post('/delivery', function (req, res, next){
         res.redirect('/')
 
     }
+});
+
+router.get('/account', function (req, res, next){
+    if(!req.session.username){
+        res.redirect('/login');
+    }else{
+        var currUser = req.session.username;
+        Account.findOne({username: req.session.username},
+            function (err, doc){
+                
+            });
+
+        res.render('account', {user: currUser});
+    }
 })
 
 module.exports = router;

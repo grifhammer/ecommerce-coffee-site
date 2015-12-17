@@ -14,7 +14,8 @@ html
 					a.btn.btn-default(href='/register') Register
 			if (user)
 				.login-wrapper
-					p Congrats! Thanks for returning #{user}
+					p Congrats! Thanks for returning 
+						a(href="/account") #{user}
 					a.btn.btn-warning(href='/logout') Logout!
 		if (active)
 			#nav-wrap
