@@ -4,11 +4,10 @@ var Account = require('../models/account');
 var nodemailer = require('nodemailer');
 var vars = require('../config/vars.json');
 var router = express.Router();
-
+var stripe = require("stripe")(vars.stripeKey);
 
 function formatDate(value)
 {
-    console.log(value.getYear());
    return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getFullYear();
 }
 /* GET home page. */
@@ -56,7 +55,6 @@ router.post('/login', function (req, res, next){
             return res.redirect('login?failedlogin=1');
         }
         if(user){
-            console.log(user);
             passport.serializeUser(function (user, done){
                 done(null, user);
             });
@@ -64,7 +62,6 @@ router.post('/login', function (req, res, next){
                 done(null, obj);
             });
             req.session.username = user.username;
-            console.log(req.session.username);
         }
         return res.redirect('/')
 
@@ -90,8 +87,6 @@ router.get('/choices', function (req, res, next){
                 var currGrind = doc.grind ? doc.grind : undefined
                 var currPounds = doc.pounds ? doc.pounds : undefined
                 var currFrequency = doc.frequency ? doc.frequency : undefined
-                console.log(currGrind)
-                console.log(currFrequency)
 
                 res.render('choices', { user: req.session.username,
                                         active: 'options',
@@ -293,10 +288,29 @@ router.get('/payment', function (req, res, next){
     }
 });
 
-router.post('/payment', function (req, res, next)){
+router.post('/payment', function (req, res, next){
     if(!req.session.username){
         res.redirect('/login')
+    }else{
+
+        stripe.charges.create({
+            amount: 400,
+            currency: "usd",
+            source: req.body.stripeToken, // obtained with Stripe.js
+            description: "Charge for test@example.com"
+        }, function(err, charge) {
+
+            // asynchronously called
+            if(err){
+                console.log(err);
+                res.json({response: err});
+            }else{
+                console.log(charge)
+                //Change to payment confirmation page
+                res.redirect('/');
+            }
+        });
     }
-}
+});
 
 module.exports = router;
