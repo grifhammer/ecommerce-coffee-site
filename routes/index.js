@@ -5,6 +5,12 @@ var nodemailer = require('nodemailer');
 var vars = require('../config/vars.json');
 var router = express.Router();
 
+
+function formatDate(value)
+{
+    console.log(value.getYear());
+   return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getYear();
+}
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {   user: req.session.username,
@@ -138,7 +144,7 @@ router.get('/delivery', function (req, res, next){
                 var currCity = doc.city ? doc.city : ''
                 var currState = doc.state ? doc.state : ''
                 var currZipCode = doc.zipCode ? doc.zipCode : ''
-                var currDeliveryDate = doc.deliveryDate ? doc.deliveryDate : ''
+                var currDeliveryDate = doc.deliveryDate ? formatDate(doc.deliveryDate) : ''
                 res.render('delivery', {user: req.session.username,
                                         active: 'delivery',
                                         fullName: currFullName,
