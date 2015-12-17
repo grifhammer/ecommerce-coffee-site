@@ -226,32 +226,41 @@ router.get('/account', function (req, res, next){
     }
 });
 
-router.get('/email', function (req, res, next){
-    var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: vars.email,
-            pass: vars.password
-        }
+// router.get('/email', function (req, res, next){
+//     var transporter = nodemailer.createTransport({
+//         service: "Gmail",
+//         auth: {
+//             user: vars.email,
+//             pass: vars.password
+//         }
 
-    });
-    var text = "this is a test email from my node server";
-    var mailOptions = {
-        from: 'Griffin Hammer <grifhammer@gmail.com>',
-        to: 'Griffin Hammer <grifhammer@gmail.com>',
-        subject: 'This is a test',
-        text: text
-    };
+//     });
+//     var text = "this is a test email from my node server";
+//     var mailOptions = {
+//         from: 'Griffin Hammer <grifhammer@gmail.com>',
+//         to: 'Griffin Hammer <grifhammer@gmail.com>',
+//         subject: 'This is a test',
+//         text: text
+//     };
 
-    transporter.sendMail(mailOptions, function (error, info){
-        if(error){
-            console.log(error);
-            res.json({response: error});
-        }else{
-            console.log("WE DID IT! Response: " + info.response);
-            res.json({response: "success"});
-        }
-    })
-});
+//     transporter.sendMail(mailOptions, function (error, info){
+//         if(error){
+//             console.log(error);
+//             res.json({response: error});
+//         }else{
+//             console.log("WE DID IT! Response: " + info.response);
+//             res.json({response: "success"});
+//         }
+//     })
+// });
+
+router.get('/payment', function (req, res, body){
+    if(!req.session.username){
+        res.redirect('/login');
+    }else{
+        res.render('payment', { user: req.session.username,
+                                active: 'payment'});
+    }
+})
 
 module.exports = router;
