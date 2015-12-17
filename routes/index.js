@@ -9,7 +9,7 @@ var router = express.Router();
 function formatDate(value)
 {
     console.log(value.getYear());
-   return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getYear();
+   return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getFullYear();
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
