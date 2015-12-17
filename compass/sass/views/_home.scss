@@ -29,8 +29,18 @@ body{
         left: 0;
         z-index: 100;
         .login-wrapper{
+            margin: 25px 0px 0px;
+            a.btn{
+                margin-left: 20px
+            }
             p{
+                margin-top: 7px;
+                margin-right: 10px;
                 color: white;
+                float: left;
+                a{
+                    color: darken($cream, 20%);
+                }
             }
             float: right;
         }

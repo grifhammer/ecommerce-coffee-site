@@ -21,7 +21,7 @@ router.post('/register', function(req, res) {
 
         passport.authenticate('local')(req, res, function () {
             req.session.username = req.body.username;
-            res.render('choices');
+            res.redirect('/choices');
         });
     });
 });
@@ -196,12 +196,31 @@ router.get('/account', function (req, res, next){
         res.redirect('/login');
     }else{
         var currUser = req.session.username;
-        Account.findOne({username: req.session.username},
+        Account.findOne({username: currUser},
             function (err, doc){
-                
+                var currAddr1 = doc.addressLine1
+                var currAddr2 = doc.addressLine2
+                var currFullName = doc.fullName
+                var currCity = doc.city
+                var currState = doc.state
+                var currZipCode = doc.zipCode
+                var currGrind = doc.grind
+                var currFrequency = doc.frequency
+                var currPounds = doc.pounds
+                var currDeliveryDate = doc.deliveryDate
+                res.render('account', {user: req.session.username,
+                                        fullName: currFullName,
+                                        addressLine1: currAddr1,
+                                        addressLine2: currAddr2,
+                                        city: currCity,
+                                        state: currState,
+                                        zipCode: currZipCode,
+                                        deliveryDate: currDeliveryDate,
+                                        grind: currGrind,
+                                        frequency : currFrequency,
+                                        pounds : currPounds
+                                        });
             });
-
-        res.render('account', {user: currUser});
     }
 })
 
