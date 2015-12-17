@@ -140,6 +140,7 @@ router.get('/delivery', function (req, res, next){
                 var currState = doc.state ? doc.state : ''
                 var currZipCode = doc.zipCode ? doc.zipCode : ''
                 var currDeliveryDate = doc.deliveryDate ? formatDate(doc.deliveryDate) : ''
+                console.log(currAddr2)
                 res.render('delivery', {user: req.session.username,
                                         active: 'delivery',
                                         fullName: currFullName,
@@ -272,6 +273,7 @@ router.get('/payment', function (req, res, next){
                 var currFrequency = doc.frequency
                 var currPounds = doc.pounds
                 var currDeliveryDate = doc.deliveryDate
+                console.log(currAddr2)
                 res.render('payment', { user: req.session.username,
                                         active: "payment",
                                         fullName: currFullName,
