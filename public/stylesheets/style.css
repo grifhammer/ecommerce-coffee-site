@@ -420,6 +420,50 @@ body #footer-wrap .trademarks .commons-license .contributors .contributor {
   margin-bottom: 70px;
 }
 
+/* line 3, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap h1 {
+  margin: 60px 0px 35px;
+}
+/* line 6, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap {
+  border: 2px solid #ada48d;
+  border-radius: 5px;
+  padding: 35px 45px 40px;
+}
+/* line 12, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap .section-wrap .section-header-wrap h2 {
+  float: left;
+  font-weight: 700;
+}
+/* line 16, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap .section-wrap .section-header-wrap a {
+  float: left;
+  margin-top: 30px;
+  margin-left: 20px;
+  font-weight: 600;
+}
+/* line 23, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap .section-wrap .choice {
+  overflow: hidden;
+}
+/* line 25, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap .section-wrap .choice p {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 0px;
+  margin-bottom: 2px;
+}
+/* line 31, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #information-wrap .section-wrap .choice.delivery {
+  margin-top: 35px;
+}
+/* line 38, ../../compass/sass/views/_payment.scss */
+#payment #payment-wrap #btn-wrap {
+  text-align: center;
+  margin-top: 45px;
+  margin-bottom: 60px;
+}
+
 /* line 3, ../../compass/sass/views/_account.scss */
 #account #account-wrapper h1 {
   margin: 60px 0px 35px;

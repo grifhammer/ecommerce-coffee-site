@@ -194,7 +194,7 @@ router.post('/delivery', function (req, res, next){
                     account.save;
                 }
         });
-        res.redirect('/')
+        res.redirect('/payment')
 
     }
 });
@@ -264,8 +264,32 @@ router.get('/payment', function (req, res, body){
     if(!req.session.username){
         res.redirect('/login');
     }else{
-        res.render('payment', { user: req.session.username,
-                                active: 'payment'});
+        var currUser = req.session.username;
+        Account.findOne({username: currUser},
+            function (err, doc){
+                var currAddr1 = doc.addressLine1
+                var currAddr2 = doc.addressLine2
+                var currFullName = doc.fullName
+                var currCity = doc.city
+                var currState = doc.state
+                var currZipCode = doc.zipCode
+                var currGrind = doc.grind
+                var currFrequency = doc.frequency
+                var currPounds = doc.pounds
+                var currDeliveryDate = doc.deliveryDate
+                res.render('payment', {user: req.session.username,
+                                        fullName: currFullName,
+                                        addressLine1: currAddr1,
+                                        addressLine2: currAddr2,
+                                        city: currCity,
+                                        state: currState,
+                                        zipCode: currZipCode,
+                                        deliveryDate: currDeliveryDate,
+                                        grind: currGrind,
+                                        frequency : currFrequency,
+                                        pounds : currPounds
+                                        });
+            });
     }
 })
 
