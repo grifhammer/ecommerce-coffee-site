@@ -272,7 +272,8 @@ router.get('/payment', function (req, res, next){
                 var currFrequency = doc.frequency
                 var currPounds = doc.pounds
                 var currDeliveryDate = doc.deliveryDate
-                res.render('payment', {user: req.session.username,
+                res.render('payment', { user: req.session.username,
+                                        active: "payment",
                                         fullName: currFullName,
                                         addressLine1: currAddr1,
                                         addressLine2: currAddr2,
