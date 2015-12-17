@@ -403,14 +403,24 @@ body #footer-wrap .trademarks .commons-license .contributors .contributor {
   margin-left: 20px;
   font-weight: 600;
 }
-/* line 24, ../../compass/sass/views/_account.scss */
+/* line 23, ../../compass/sass/views/_account.scss */
+#account #account-wrapper #information-wrap .section-wrap .choice {
+  overflow: hidden;
+}
+/* line 25, ../../compass/sass/views/_account.scss */
 #account #account-wrapper #information-wrap .section-wrap .choice p {
   font-size: 14px;
   font-weight: 600;
+  padding-left: 0px;
+  margin-bottom: 2px;
 }
-/* line 32, ../../compass/sass/views/_account.scss */
+/* line 31, ../../compass/sass/views/_account.scss */
+#account #account-wrapper #information-wrap .section-wrap .choice.delivery {
+  margin-top: 35px;
+}
+/* line 38, ../../compass/sass/views/_account.scss */
 #account #account-wrapper #btn-wrap {
   text-align: center;
-  margin-top: 25px;
-  margin-bottom: 70px;
+  margin-top: 45px;
+  margin-bottom: 60px;
 }

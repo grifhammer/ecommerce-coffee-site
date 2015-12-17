@@ -21,9 +21,15 @@
                     }
                 }
                 .choice{
+                    overflow: hidden;
                     p{
                         font-size: 14px;
                         font-weight: 600;
+                        padding-left: 0px;
+                        margin-bottom: 2px;
+                    }
+                    &.delivery{
+                        margin-top: 35px;
                     }
                 }
             }
@@ -31,8 +37,8 @@
         }
         #btn-wrap{
             text-align: center;
-            margin-top: 25px;
-            margin-bottom: 70px;
+            margin-top: 45px;
+            margin-bottom: 60px;
         }
     }
 
