@@ -1,6 +1,8 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
+var nodemailer = require('nodemailer');
+var vars = require('../config/vars.json');
 var router = express.Router();
 
 /* GET home page. */
@@ -222,6 +224,34 @@ router.get('/account', function (req, res, next){
                                         });
             });
     }
-})
+});
+
+router.get('/email', function (req, res, next){
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: vars.email,
+            pass: vars.password
+        }
+
+    });
+    var text = "this is a test email from my node server";
+    var mailOptions = {
+        from: 'Griffin Hammer <grifhammer@gmail.com>',
+        to: 'Griffin Hammer <grifhammer@gmail.com>',
+        subject: 'This is a test',
+        text: text
+    };
+
+    transporter.sendMail(mailOptions, function (error, info){
+        if(error){
+            console.log(error);
+            res.json({response: error});
+        }else{
+            console.log("WE DID IT! Response: " + info.response);
+            res.json({response: "success"});
+        }
+    })
+});
 
 module.exports = router;
