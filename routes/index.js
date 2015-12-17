@@ -260,7 +260,7 @@ router.get('/account', function (req, res, next){
 //     })
 // });
 
-router.get('/payment', function (req, res, body){
+router.get('/payment', function (req, res, next){
     if(!req.session.username){
         res.redirect('/login');
     }else{
@@ -291,6 +291,12 @@ router.get('/payment', function (req, res, body){
                                         });
             });
     }
-})
+});
+
+router.post('/payment', function (req, res, next)){
+    if(!req.session.username){
+        res.redirect('/login')
+    }
+}
 
 module.exports = router;
