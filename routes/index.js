@@ -5,7 +5,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { user: req.session.username });
+    res.render('index', {   user: req.session.username,
+                            active: 'welcome' });
 });
 
 router.get('/register', function (req, res, next){
@@ -85,6 +86,7 @@ router.get('/choices', function (req, res, next){
                 console.log(currFrequency)
 
                 res.render('choices', { user: req.session.username,
+                                        active: 'options',
                                         grind: currGrind,
                                         pounds: currPounds,
                                         frequency: currFrequency
@@ -136,6 +138,7 @@ router.get('/delivery', function (req, res, next){
                 var currZipCode = doc.zipCode ? doc.zipCode : ''
                 var currDeliveryDate = doc.deliveryDate ? doc.deliveryDate : ''
                 res.render('delivery', {user: req.session.username,
+                                        active: 'delivery',
                                         fullName: currFullName,
                                         addressLine1: currAddr1,
                                         addressLine2: currAddr2,

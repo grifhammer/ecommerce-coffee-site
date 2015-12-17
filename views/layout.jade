@@ -16,6 +16,18 @@ html
 				.login-wrapper
 					p Congrats! Thanks for returning #{user}
 					a.btn.btn-warning(href='/logout') Logout!
+		if (active)
+			#nav-wrap
+				.container
+					ul.signup-progress
+						li(class=((active == "welcome") ? 'active' : ""))
+							a(href='/').welcome 1. Welcome
+						li(class=(active == "options") ? 'active' : "")
+							a(href='/choices').options 2. Options
+						li(class=(active == "delivery") ? 'active' : "")
+							a(href='/delivery').delivery 3. Delivery
+						li(class=(active == "payment") ? 'active' : "")
+							a(href='/payment').payment 4. Payment
 		block content
 	footer
 		#footer-wrap
