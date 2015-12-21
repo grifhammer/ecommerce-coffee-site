@@ -8,6 +8,9 @@
 
 body{
     background-color: darken($cream, 10%);
+    .corner{
+        text-align: center;
+    }
     .error{
         color: $red;
     }
@@ -160,31 +163,33 @@ body{
 
     }
 
-    #second-step{
-        position: relative;
+    #corner-wrap-step{
         background-image: url('../images/canvas.jpg');
-        color: $brown_dk;
-        padding: 90px 60px 60px;
-        overflow: hidden;
-        #postcard{
-            border: 15px solid $white;
-            box-shadow: 3px 3px 10px rgba($black, 0.7);
-            margin-left: 10%;
-            @include rotate(-5deg);
-            float: left;
-            img{
-                border: 2px solid $brown_lt;
-                display: block;
-                max-width: 100%;
-            }
-        }
-        .text-wrap{
-            float: right;
+        #second-step{
             position: relative;
-            top: 30%;
-            right: 11%;
-        }
+            color: $brown_dk;
+            padding: 90px 60px 60px;
+            overflow: hidden;
+            #postcard{
+                border: 15px solid $white;
+                box-shadow: 3px 3px 10px rgba($black, 0.7);
+                margin-left: 10%;
+                @include rotate(-5deg);
+                float: left;
+                img{
+                    border: 2px solid $brown_lt;
+                    display: block;
+                    max-width: 100%;
+                }
+            }
+            .text-wrap{
+                float: right;
+                position: relative;
+                top: 30%;
+                right: 11%;
+            }
 
+        }
     }
 
 
@@ -197,7 +202,7 @@ body{
         color: white;
         height: 400px;
     }
-    .register-wrap{
+    .register-btn-wrap{
         text-align: center;
         padding: 50px;
         a{
