@@ -2,7 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var nodemailer = require('nodemailer');
-if(!process.env){
+if(!process.env.STRIPE_KEY){
     var vars = require('../config/vars.json');
 }
 var router = express.Router();
