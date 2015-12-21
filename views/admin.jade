@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    #admin.container
+        h1 Isn't it cool being an admin.
+        each account in accounts
+            li #{account.username} - #{account.accessLevel ? account.accessLevel : '0'} - #{account.grind} - #{account.frequency} - #{account.pounds} - #{account.deliveryDate ? account.deliveryDate : 'None Scheduled' }
