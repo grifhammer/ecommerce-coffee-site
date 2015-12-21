@@ -4,7 +4,9 @@ var Account = require('../models/account');
 var nodemailer = require('nodemailer');
 var vars = require('../config/vars.json');
 var router = express.Router();
-var stripe = require("stripe")(vars.stripeKey);
+
+var stripeKey = process.env.STRIPE_KEY || vars.stripeKey;
+var stripe = require("stripe")(stripeKey);
 
 function formatDateShort(value)
 {
@@ -59,6 +61,9 @@ router.post('/login', function (req, res, next){
             return res.redirect('login?failedlogin=1');
         }
         if(user){
+            if(user.accessLevel == 5){
+                req.session.accessLevel = "Admin";
+            }
             passport.serializeUser(function (user, done){
                 done(null, user);
             });
@@ -96,6 +101,7 @@ router.get('/choices', function (req, res, next){
 
                 res.render('choices', { user: req.session.username,
                                         active: 'options',
+                                        accessLevel: req.session.accessLevel,
                                         grind: currGrind,
                                         pounds: currPounds,
                                         frequency: currFrequency
@@ -279,12 +285,12 @@ router.post('/payment', function (req, res, next){
         req.session.route = req.url
         res.redirect('/login');
     }else{
-
+        req.session.paymentAmount = 2000;
         stripe.charges.create({
-            amount: 400,
+            amount: req.session.paymentAmount,
             currency: "usd",
             source: req.body.stripeToken, // obtained with Stripe.js
-            description: "Charge for test@example.com"
+            description: "Charge for " + req.body.stripeEmail
         }, function(err, charge) {
 
             // asynchronously called
@@ -292,10 +298,45 @@ router.post('/payment', function (req, res, next){
                 console.log(err);
                 res.json({response: err});
             }else{
-                console.log(charge)
                 //Change to payment confirmation page
-                res.redirect('/');
+                res.redirect('/thanks');
             }
+        });
+    }
+});
+
+function convertToDollars(value){
+    var centsVal = value % 100;
+    console.log(centsVal);
+    var centsString = centsVal < 10 ? "0" + centsVal : centsVal; 
+    console.log(centsString);
+    var dollarString = Math.floor(value/100) + "." + centsString
+    console.log(dollarString)
+    return dollarString;
+}
+
+
+router.get('/thanks', function (req, res, next){
+    if(!req.session.username){
+        req.session.route = '/payment';
+        res.redirect('/login');
+    }else{
+        var paymentString = convertToDollars(req.session.paymentAmount);
+        res.render('thanks', {  user : req.session.username,
+                                paymentAmount: paymentString})
+    }
+});
+
+router.get("/admin", function (req, res, next){
+    if(req.session.accessLevel != "Admin"){
+        res.redirect('/');
+    }else{
+        Account.find({}, function (err, doc, next){
+
+            res.render('admin', {   user: req.session.username, 
+                                    accounts: doc});
+            // res.render('admin');
+
         });
     }
 });
