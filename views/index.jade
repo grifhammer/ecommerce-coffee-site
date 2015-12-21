@@ -1,33 +1,41 @@
 extends layout
 
 block content
-	div.hero
-		div.hero-text
+	.hero
+		.hero-text
 			h1 A better way to grind
 			p Freshly Roasted coffee beans delivered weekly to your door.
-	div#main-text
+	#main-text
 		h2 We Source coffee beans from around the World and roast them fresh daily
 		p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
 	h2.how-label HOW IT WORKS
-	div#first-step
+	#first-step
 		.text-wrap.left
 			h3 1. We get the coffee
 			p Lorem Ispum is simply
 			p Lorem Ispum is simply
 			p Lorem Ispum is simply
-	div#second-step
-		#postcard
-			img(src="images/grower.jpg")
-		.text-wrap.right
-			h3 2. We pick up the coffee
-			p Lorem Ispum is simply
-			p Lorem Ispum is simply
-			p Lorem Ispum is simply
-	div#third-step
+	#corner-wrap-step
+		.corner
+			img(src="images/CoffeeBags_corner.png")
+		#second-step
+			#postcard
+				img(src="images/grower.jpg")
+			.text-wrap.right
+				h3 2. We pick up the coffee
+				p Lorem Ispum is simply
+				p Lorem Ispum is simply
+				p Lorem Ispum is simply
+	#third-step
+		.corner
+			img(src="images/canvas_corner.png")
 		.text-wrap.left
 			h3 3. You drink the coffee
 			p Lorem Ispum is simply
 			p Lorem Ispum is simply
-	.register-wrap
-		a(href="/register")
-			button.btn.btn-success.btn-lg Get Started
+	#register
+		.corner
+			img(src="images/canvas_corner.png")
+		.register-btn-wrap
+			a(href="/register")
+				button.btn.btn-success.btn-lg Get Started
