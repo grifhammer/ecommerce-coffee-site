@@ -18,6 +18,8 @@ html
 					p Welcome, 
 						a(href="/account") #{user}
 					a.btn.btn-warning(href='/logout') Logout!
+					if(accessLevel)
+						a.btn.btn-danger(href="/admin") Admin
 		if (active)
 			#nav-wrap
 				.container
