@@ -14,7 +14,8 @@ var Account = new Schema ({
     city: String,
     state: String,
     zipCode: Number,
-    deliveryDate: {type: Date, default: Date.now }
+    deliveryDate: Date,
+    accessLevel: Number
 
 });
 
