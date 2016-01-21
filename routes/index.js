@@ -12,11 +12,17 @@ var stripe = require("stripe")(stripeKey);
 
 function formatDateShort(value)
 {
-   return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getFullYear();
+    if(value){
+        return value.getMonth()+1 + "/" + value.getDate() + "/" + value.getFullYear();
+    }
+    return '';
 }
 function formatDateLong(value)
 {
-   return value.toDateString();
+    if(value){
+        return value.toDateString();
+    }
+    return '';
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
